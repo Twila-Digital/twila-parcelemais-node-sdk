@@ -51,6 +51,7 @@ jobs:
       - uses: codecov/codecov-action@v7
         if: matrix.os == 'ubuntu-latest' && matrix.node == '24'
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./coverage
           fail_ci_if_error: false
 
