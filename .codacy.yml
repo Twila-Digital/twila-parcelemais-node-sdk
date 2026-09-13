@@ -5,5 +5,3 @@ exclude_paths:
   - "samples/**"
   - "**/*.test.ts"
   - "**/node_modules/**"
-  - "src/internal/generated/**"
-  - "scripts/**"
