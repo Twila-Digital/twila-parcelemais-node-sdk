@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "abort-controller": "^3.0.0",
     "@types/node": "^22.10.0",
     "@vitest/coverage-v8": "^5.0.0",
     "cockatiel": "^4.0.0",

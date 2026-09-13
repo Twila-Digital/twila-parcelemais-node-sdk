@@ -1,3 +1,5 @@
+import './internal/polyfills/abortController';
+
 import { AccessTokenProviderImpl, type AccessTokenProvider } from './internal/auth/accessTokenProvider';
 import { TokenApiClientImpl } from './internal/auth/tokenApiClient';
 import { ApiRequestExecutor } from './internal/http/apiRequestExecutor';
