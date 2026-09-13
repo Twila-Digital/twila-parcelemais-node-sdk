@@ -57,7 +57,7 @@ npm install /caminho/para/twila-parcelemais-1.0.0.tgz
 
 ## Release (publicação no npm)
 
-Diferente do Maven Central, o npm tem **Trusted Publishing (OIDC) real** desde 31/07/2025 — o próprio `npm publish` troca o token OIDC do GitHub Actions por uma credencial de publish de curta duração, sem precisar de uma action separada nem de um token de longa duração guardado como secret (ver `SDK-PLAYBOOK.md` §1.6 no repositório `sdks-twila`). Exige **npm CLI ≥ 11.5.1** e **Node ≥ 22.14** no job que publica (o pacote em si continua compatível com Node 14+ para quem instala).
+Diferente do Maven Central, o npm tem **Trusted Publishing (OIDC) real** desde 31/07/2025 — o próprio `npm publish` troca o token OIDC do GitHub Actions por uma credencial de publish de curta duração, sem precisar de uma action separada nem de um token de longa duração guardado como secret (ver `SDK-PLAYBOOK.md` §1.6 no repositório `sdks-twila`). Exige **npm CLI ≥ 11.5.1** e **Node 24+** no job que publica — o pacote em si continua compatível com Node 14+ para quem instala. Forçamos `npm install -g npm@latest` antes do publish porque a versão de npm empacotada com o Node pode ficar abaixo de 11.5.1 dependendo da imagem do runner, e sem essa versão o CLI nem tenta o fluxo OIDC (cai direto em `ENEEDAUTH`).
 
 Antes do primeiro release, alguém com acesso à conta/organização do npm precisa configurar:
 
