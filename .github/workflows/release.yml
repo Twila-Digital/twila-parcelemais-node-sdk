@@ -1,0 +1,47 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  ci:
+    uses: ./.github/workflows/ci.yml
+
+  contract-tests:
+    needs: ci
+    uses: ./.github/workflows/contract-tests.yml
+
+  publish:
+    needs: [ci, contract-tests]
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22.14'
+          registry-url: 'https://registry.npmjs.org'
+
+      - run: npm ci
+
+      - name: Extrai a versão da tag
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Define a versão do release
+        run: npm version ${{ steps.version.outputs.version }} --no-git-tag-version --allow-same-version
+
+      - run: npm run build
+
+      - name: Publica no npm (Trusted Publishing / OIDC)
+        run: npm publish --access public
+
+      - name: GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          generate_release_notes: true

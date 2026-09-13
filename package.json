@@ -1,0 +1,60 @@
+{
+  "name": "@twila/parcelemais",
+  "version": "1.0.0",
+  "description": "SDK oficial em Node.js/TypeScript para a API do Parcele+ (crédito direto ao consumidor e parcelamento no momento da compra)",
+  "license": "MIT",
+  "keywords": ["parcelemais", "cdc", "sdk", "twila"],
+  "homepage": "https://github.com/Twila-Digital/twila-parcelemais-node-sdk",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Twila-Digital/twila-parcelemais-node-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Twila-Digital/twila-parcelemais-node-sdk/issues"
+  },
+  "author": "Twila Digital",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=14"
+  },
+  "sideEffects": false,
+  "workspaces": [
+    "contract-tests",
+    "samples/*"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "axios": "^1.20.0",
+    "cockatiel": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@vitest/coverage-v8": "^5.0.0",
+    "msw": "^2.15.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.7.2",
+    "vitest": "^5.0.0"
+  }
+}
