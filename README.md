@@ -21,7 +21,7 @@ SDK oficial em Node.js/TypeScript para a API do [Parcele+](https://www.cartaosim
 
 | Runtime | Versões aceitas |
 | --- | --- |
-| Node.js | 14 ou superior (testado em CI nas versões 14, 18 e 22) |
+| Node.js | 14 ou superior (suíte completa em CI no Node 22/24; smoke test do pacote publicado em Node 14 e 18) |
 
 Publica **CommonJS** (`require`) e **ES Modules** (`import`) no mesmo pacote, com tipos TypeScript inclusos — funciona em projetos legados e modernos sem configuração extra.
 
@@ -151,7 +151,7 @@ Verifica a assinatura HMAC-SHA256 do cabeçalho e a janela de replay (5 minutos)
 ## Qualidade, segurança e cobertura
 
 - **Build** (`ci.yml`) — `tsc --noEmit` + build dual CJS/ESM via `tsup` (alvo `node14`, com downlevel automático de sintaxe não suportada).
-- **Test** (`ci.yml`) — testes unitários rodando sob Node 14 (mínimo suportado), 18 e 22 (LTS atual).
+- **Test** (`ci.yml`) — suíte completa (vitest) em Node 22/24, que é o mínimo que o próprio vitest 5 exige (`^22.12.0 || ^24.0.0`) — não roda em Node 14/18. Job separado (`legacy-smoke`) valida o pacote já compilado (`dist/`) rodando de verdade em Node 14 e 18, sem depender do vitest.
 - **Quality** (`quality.yml`) — análise estática via Codacy CLI, resultados publicados na aba **Security → Code scanning** do repositório.
 - **Security** (`security.yml`) — [CodeQL](https://codeql.github.com/) para JavaScript/TypeScript, rodando a cada PR/push e semanalmente.
 - **Coverage** — cobertura de testes coletada via `@vitest/coverage-v8` e publicada no [Codecov](https://codecov.io/gh/Twila-Digital/twila-parcelemais-node-sdk).

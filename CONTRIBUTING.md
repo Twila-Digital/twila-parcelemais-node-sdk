@@ -2,7 +2,7 @@
 
 ## Pré-requisitos
 
-- Node.js 14 ou superior (o CI testa nas versões 14, 18 e 22)
+- Node.js 22.12+ para rodar a suíte de testes (vitest 5 exige isso — ver abaixo)
 - npm 9+
 
 ## Build e testes
@@ -13,7 +13,15 @@ npm run build
 npm test
 ```
 
-Rode os testes em **todas** as versões de Node que o pacote promete suportar antes de abrir o PR — não só a mais recente. Veja `SDK-PLAYBOOK.md` §2.4/§1.5 no repositório `sdks-twila`.
+O vitest 5 **não roda em Node 14/18** (exige `^22.12.0 || ^24.0.0 || >=26.0.0`) — a suíte completa só faz sentido em Node 22+. Para validar o piso legado (Node 14) que o pacote publicado promete suportar, rode o smoke test sem framework contra o build real:
+
+```bash
+npm run build
+node scripts/smoke-legacy.cjs
+node scripts/smoke-legacy.mjs
+```
+
+Troque o Node ativo (nvm, volta, etc.) para 14 ou 18 antes de rodar os dois comandos acima — essa é a validação que realmente importa pro piso mínimo, já que o vitest não consegue fazer isso por si (ver `SDK-PLAYBOOK.md` §2.4 no repositório `sdks-twila`, a mesma lição do "multi-target os testes" do SDK .NET/Java, adaptada aqui porque a própria ferramenta de teste tem um piso mais alto que o pacote).
 
 Os contract tests (`contract-tests/`) fazem uma chamada real ao OpenAPI de staging e não rodam por padrão:
 

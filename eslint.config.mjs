@@ -12,7 +12,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['samples/**/*.js'],
+    files: ['samples/**/*.js', 'scripts/**/*.{js,cjs,mjs}'],
     languageOptions: {
       globals: globals.node,
     },
