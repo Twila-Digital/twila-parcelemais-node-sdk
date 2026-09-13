@@ -37,7 +37,6 @@ function validate(options: ParceleMaisClientOptions): void {
 
   if (options.baseUrl !== undefined) {
     try {
-      // eslint-disable-next-line no-new
       new URL(options.baseUrl);
     } catch {
       throw new ParceleMaisConfigurationError('baseUrl, quando informada, deve ser uma URL absoluta válida.');

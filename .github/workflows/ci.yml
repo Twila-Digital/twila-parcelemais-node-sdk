@@ -19,6 +19,7 @@ jobs:
           cache: npm
 
       - run: npm ci
+      - run: npm run lint
       - run: npm run typecheck
       - run: npm run build
 
@@ -38,10 +39,16 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          node-version: ${{ matrix.node }}
+          node-version: '22'
           cache: npm
 
       - run: npm ci
+
+      - name: Troca para o Node da matriz
+        uses: actions/setup-node@v5
+        with:
+          node-version: ${{ matrix.node }}
+
       - run: npm test
 
       - name: Upload coverage to Codecov
