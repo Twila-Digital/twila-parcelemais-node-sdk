@@ -10,4 +10,5 @@ export default defineConfig({
   splitting: false,
   treeshake: true,
   outExtension: ({ format }) => ({ js: format === 'cjs' ? '.cjs' : '.mjs' }),
+  noExternal: ['cockatiel'],
 });
