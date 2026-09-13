@@ -33,7 +33,9 @@ jobs:
           max-allowed-issues: 2147483647
 
       - name: Merge SARIF runs
-        run: node scripts/merge-sarif-runs.cjs results.sarif
+        run: |
+          sudo chown "$(id -u):$(id -g)" results.sarif
+          node scripts/merge-sarif-runs.cjs results.sarif
 
       - name: Upload SARIF results
         uses: github/codeql-action/upload-sarif@v4
