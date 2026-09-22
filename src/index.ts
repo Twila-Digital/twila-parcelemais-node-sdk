@@ -7,12 +7,14 @@ import { resolveClientOptions, type ParceleMaisClientOptions } from './config/cl
 import { CustomersClientImpl, type CustomersClient } from './customers/customersClient';
 import { OrdersClientImpl, type OrdersClient } from './orders/ordersClient';
 import { SimulationsClientImpl, type SimulationsClient } from './simulations/simulationsClient';
+import { EstablishmentsClientImpl, type EstablishmentsClient } from './establishments/establishmentsClient';
 import { WebhooksClientImpl, type WebhooksClient } from './webhooks/webhooksClient';
 
 export class ParceleMaisClient {
   readonly orders: OrdersClient;
   readonly simulations: SimulationsClient;
   readonly customers: CustomersClient;
+  readonly establishments: EstablishmentsClient;
   readonly webhooks: WebhooksClient;
 
   constructor(options: ParceleMaisClientOptions) {
@@ -30,6 +32,7 @@ export class ParceleMaisClient {
     this.orders = new OrdersClientImpl(executor, resolved.resilience.invoiceUploadAttemptTimeoutMs);
     this.simulations = new SimulationsClientImpl(executor);
     this.customers = new CustomersClientImpl(executor);
+    this.establishments = new EstablishmentsClientImpl(executor);
     this.webhooks = new WebhooksClientImpl(executor);
   }
 }
@@ -70,6 +73,22 @@ export {
   type Customer,
   type ListCustomersRequest,
 } from './customers/types';
+
+export type { EstablishmentsClient } from './establishments/establishmentsClient';
+export {
+  DisbursementModel,
+  disbursementModelFromWireValue,
+  BankAccountType,
+  bankAccountTypeFromWireValue,
+  type EstablishmentOwner,
+  type EstablishmentBankAccount,
+  type EstablishmentAddress,
+  type Establishment,
+  type CreateEstablishmentRequest,
+  type CreateEstablishmentResult,
+  type UpdateEstablishmentRequest,
+  type ListEstablishmentsRequest,
+} from './establishments/types';
 
 export type { WebhooksClient } from './webhooks/webhooksClient';
 export {
