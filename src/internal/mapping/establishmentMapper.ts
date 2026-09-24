@@ -48,7 +48,7 @@ export function createEstablishmentRequestToWire(request: CreateEstablishmentReq
     modeloDesembolso: request.disbursementModel,
     responsavel: { nome: request.owner.name, email: request.owner.email, celular: request.owner.phone },
     contaBancaria: bankAccountToWire(request.bankAccount),
-    endereco: request.address ? addressToWire(request.address) : undefined,
+    endereco: addressToWire(request.address),
   };
 }
 

@@ -45,7 +45,7 @@ export interface CreateEstablishmentRequestWire {
   modeloDesembolso: number;
   responsavel: EstablishmentOwnerWire;
   contaBancaria: EstablishmentBankAccountWire;
-  endereco?: EstablishmentAddressWire;
+  endereco: EstablishmentAddressWire;
 }
 
 export interface CreateEstablishmentResponseWire {

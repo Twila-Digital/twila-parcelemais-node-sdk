@@ -46,7 +46,7 @@ const address: EstablishmentAddress = {
   zipCode: '01310100',
 };
 
-function createRequest(withAddress = true): CreateEstablishmentRequest {
+function createRequest(): CreateEstablishmentRequest {
   return {
     document: '12345678000199',
     legalName: 'Loja Centro LTDA',
@@ -60,7 +60,7 @@ function createRequest(withAddress = true): CreateEstablishmentRequest {
       accountDigit: '0',
       accountType: BankAccountType.Current,
     },
-    address: withAddress ? address : undefined,
+    address,
   };
 }
 
@@ -118,22 +118,6 @@ describe('EstablishmentsClient (MSW)', () => {
     expect(asRecord(body?.responsavel).celular).toBe('+5511999998888');
     expect(asRecord(body?.contaBancaria).tipoConta).toBe(1);
     expect(asRecord(body?.endereco).cep).toBe('01310100');
-  });
-
-  it('omits the address when none is provided', async () => {
-    stubTokenEndpoint();
-    let body: Record<string, unknown> | undefined;
-
-    server.use(
-      http.post(`${BASE_URL}/v1/establishment`, async ({ request }) => {
-        body = (await request.json()) as Record<string, unknown>;
-        return HttpResponse.json({ estabelecimentoId: randomUUID() });
-      }),
-    );
-
-    await newClient().establishments.create(createRequest(false));
-
-    expect(body).not.toHaveProperty('endereco');
   });
 
   it('maps the establishment on get', async () => {

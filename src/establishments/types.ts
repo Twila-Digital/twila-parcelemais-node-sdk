@@ -69,7 +69,7 @@ export interface CreateEstablishmentRequest {
   disbursementModel: DisbursementModel;
   owner: EstablishmentOwner;
   bankAccount: EstablishmentBankAccount;
-  address?: EstablishmentAddress;
+  address: EstablishmentAddress;
 }
 
 export interface CreateEstablishmentResult {

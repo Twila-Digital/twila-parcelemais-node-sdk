@@ -52,3 +52,22 @@ export interface OrderWebhookEvent {
   statusRaw: number;
   statusName: string;
 }
+
+export interface WebhookAudit {
+  id: string;
+  type: WebHookType;
+  request: string;
+  response: string;
+  statusCode: number;
+  createdAt: string;
+}
+
+export interface ListWebhookAuditRequest {
+  startDate?: string | Date;
+  endDate?: string | Date;
+  orderId?: string;
+  orderNumber?: number;
+  statusCode?: number;
+  page?: number;
+  pageSize?: number;
+}
