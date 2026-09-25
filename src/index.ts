@@ -101,5 +101,7 @@ export {
   type CreateWebhookResult,
   type UpdateWebhookRequest,
   type OrderWebhookEvent,
+  type WebhookAudit,
+  type ListWebhookAuditRequest,
 } from './webhooks/types';
 export { parseWebhookEvent, computeWebhookSignature } from './webhooks/webhookEvent';

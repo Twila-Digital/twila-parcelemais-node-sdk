@@ -93,11 +93,12 @@ const pedidoId = await client.orders.create({
 | `client.orders` | `create`, `get`, `list`, `startCdcSale`, `importInvoice` |
 | `client.simulations` | `simulateInstallments`, `simulateValues` |
 | `client.customers` | `get`, `list` |
-| `client.webhooks` | `create`, `list`, `update`, `delete` |
+| `client.establishments` | `create`, `get`, `list`, `update`, `updateBankAccount`, `activate`, `deactivate` |
+| `client.webhooks` | `create`, `list`, `update`, `delete`, `listAudit` |
 
 ## Paginação
 
-`orders.list(...)` e `customers.list(...)` retornam um `PagedResult<T>` — sem auto-paginação; você controla explicitamente o avanço de página:
+`orders.list(...)`, `customers.list(...)` e `webhooks.listAudit(...)` retornam um `PagedResult<T>` — sem auto-paginação; você controla explicitamente o avanço de página:
 
 ```typescript
 const page = await client.orders.list({ page: 1, pageSize: 20 });

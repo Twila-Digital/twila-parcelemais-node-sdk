@@ -26,3 +26,12 @@ export interface WebHookWire {
   url: string;
   tipoAutenticacao: number;
 }
+
+export interface WebHookAuditWire {
+  id: string;
+  tipo: number;
+  requisicao: string;
+  resposta: string;
+  statusCode: number;
+  dataCriacao: string;
+}
